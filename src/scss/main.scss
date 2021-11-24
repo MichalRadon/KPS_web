@@ -4,5 +4,28 @@
 @import "modules/hello.scss";
 
 body {
-  
+  background-color: $primary;
+}
+.header {
+    background-color: $primaryDark;
+    &__title {
+        text-align: center;
+        color: white;
+        margin: 0;
+        padding: 20px;
+    }
+}
+.poland {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+.world {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; 
 }
