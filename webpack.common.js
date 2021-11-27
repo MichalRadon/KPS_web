@@ -5,6 +5,7 @@ module.exports = {
   /* here you can define another js file */
   entry: {
     index: "./src/js/index.js",
+    pl: "./src/js/pl.js",
     another: "./src/js/another.js",
   },
   output: {
@@ -67,9 +68,7 @@ module.exports = {
         {
           from: "public",
           globOptions: {
-            ignore: [
-              '**/*.DS_Store'
-            ],
+            ignore: ["**/*.DS_Store"],
           },
         },
       ],
@@ -85,7 +84,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/pages/pl.html",
       inject: true,
-      chunks: ["index"],
+      chunks: ["index", "pl"],
       filename: "pl.html",
     }),
     new HtmlWebpackPlugin({
@@ -95,9 +94,15 @@ module.exports = {
       filename: "world.html",
     }),
     new HtmlWebpackPlugin({
+      template: "./src/pages/summary.html",
+      inject: true,
+      //chunks: ["index"],
+      filename: "summary.html",
+    }),
+    new HtmlWebpackPlugin({
       template: "./src/pages/another.html",
       inject: true,
-     // chunks: ["index", "another"],
+      // chunks: ["index", "another"],
       filename: "another.html",
     }),
   ],
