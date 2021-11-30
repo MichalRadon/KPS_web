@@ -25,14 +25,18 @@ function calculatePl() {
   timeIn = document.querySelector(".form-pl__time-in--js").value;
   dateOut = document.querySelector(".form-pl__date-out--js").value;
   timeOut = document.querySelector(".form-pl__time-out--js").value;
-  dietAmount = document.querySelector(
-    ".form-pl__label-diet__placeholder__input--js"
-  ).value;
-  breakfast = document.querySelector(
-    ".form-pl__grid__input-breakfast--js"
-  ).value;
-  dinner = document.querySelector(".form-pl__grid__input-dinner--js").value;
-  supper = document.querySelector(".form-pl__grid__input-super--js").value;
+  dietAmount = parseInt(
+    document.querySelector(".form-pl__label-diet__placeholder__input--js").value
+  );
+  breakfast = parseInt(
+    document.querySelector(".form-pl__grid__input-breakfast--js").value
+  );
+  dinner = parseInt(
+    document.querySelector(".form-pl__grid__input-dinner--js").value
+  );
+  supper = parseInt(
+    document.querySelector(".form-pl__grid__input-super--js").value
+  );
   validation();
 }
 function validation() {
@@ -71,19 +75,23 @@ function dietCalculation() {
       (hoursOnTrip == 12 && minutesOnTrip == 0)
     ) {
       diet = dietAmount / 2;
+      console.log("1war");
     }
     if ((hoursOnTrip == 12 && minutesOnTrip > 0) || hoursOnTrip > 12) {
       diet = dietAmount;
+      console.log("2war");
     }
 
     if (hoursOnTrip < 8) {
       diet = 0;
+      console.log("3war");
     }
   }
 
   if (daysOnTrip >= 1) {
     if (hoursOnTrip < 8) {
       diet = dietAmount * daysOnTrip + dietAmount / 2;
+      console.log("4war");
     }
 
     if (hoursOnTrip >= 8) {
@@ -103,4 +111,14 @@ function dietCalculation() {
     "sniadanie: " + breakfast + " obiad: " + dinner + " kolacje : " + supper
   );
   console.log("wartość diety: " + diet);
+
+  localStorage.setItem("dateIn", dateIn + ", " + timeIn);
+  localStorage.setItem("dateOut", dateOut + ", " + timeOut);
+  localStorage.setItem(
+    "time",
+    daysOnTrip + " dni " + hoursOnTrip + " godz " + minutesOnTrip + " minut"
+  );
+  localStorage.setItem("diet", diet);
+
+  window.location.href = "/summary.html";
 }
