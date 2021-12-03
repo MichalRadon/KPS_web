@@ -1,0 +1,100 @@
+.main-world {
+    margin: 0 auto;
+  
+    max-width: 768px;
+  }
+  .form-world {
+    &__label-in {
+      color: white;
+      padding: 10px 0;
+    }
+    &__label-out {
+      color: white;
+      padding: 10px 0;
+    }
+    &__label-diet {
+      color: white;
+      padding: 25px 0;
+      text-align: center;
+      &__placeholder {
+        padding: 10px 0;
+      }
+    }
+    &__label-food {
+      color: white;
+      text-align: center;
+    }
+    &__grid {
+      @media (max-width: $tablet) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+      }
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      &__label-breakfast {
+        @media (max-width: $tablet) {
+          grid-column: 1;
+          grid-row: 1;
+        }
+        text-align: center;
+        grid-column: 1;
+        grid-row: 1;
+        color: white;
+      }
+      &__label-dinner {
+        @media (max-width: $tablet) {
+          grid-column: 1;
+          grid-row: 3;
+        }
+        text-align: center;
+        grid-column: 2;
+        grid-row: 1;
+        color: white;
+      }
+      &__label-super {
+        @media (max-width: $tablet) {
+          grid-column: 1;
+          grid-row: 5;
+        }
+        text-align: center;
+        grid-column: 3;
+        grid-row: 1;
+        color: white;
+      }
+      &__input-breakfast {
+        @media (max-width: $tablet) {
+          grid-column: 1;
+          grid-row: 2;
+          width: 200px;
+          margin: 0 auto;
+        }
+        grid-column: 1;
+        grid-row: 2;
+      }
+      &__input-dinner {
+        @media (max-width: $tablet) {
+          grid-column: 1;
+          grid-row: 4;
+          width: 200px;
+          margin: 0 auto;
+        }
+        grid-column: 2;
+        grid-row: 2;
+      }
+      &__input-super {
+        @media (max-width: $tablet) {
+          grid-column: 1;
+          grid-row: 6;
+          width: 200px;
+          margin: 0 auto;
+        }
+        grid-column: 3;
+        grid-row: 2;
+      }
+    }
+    &__calculate {
+      text-align: center;
+    }
+  }
+  

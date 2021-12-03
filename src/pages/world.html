@@ -22,8 +22,45 @@
     <header class="header">
       <h1 class="header__title">KPS - Kalkulator Podróży Służbowej</h1>
     </header>
-    <main>
-    
+    <main class = "main-world">
+      <form class="form-world" action="/summary.html" method="POST">
+        <div class="form-world__label-in">
+          <label for="dateIn">Ustaw date i godzinę wyjazdu </label>
+        </div>
+        <input class="form-world__date-in form-world__date-in--js" type="date" name="date" id="dateIn" required />
+        <input class="form-world__time-in form-world__time-in--js" type="time" name="time" id="timeIn" required /><br />
+        <div class="form-world__label-out">
+          <label for="dateOut">Ustaw date i godzinę przyjazdu</label>
+        </div>
+        <input class="form-world__date-out form-world__date-out--js" type="date" name="date" id="dateOut" required />
+        <input class="form-world__time-out form-world__time-out--js" type="time" name="time" id="timeOut" required /><br />
+        <div class="form-world__label-diet">
+          <label for="diet">Wybierz kraj do którego jesteś delegowany</label>
+         
+          <div class="form-world__label-diet__placeholder">
+            <input list="diet" id="diet-choice" name="country-choice" autocomplete= "off"/>
+            <datalist name="country" id="diet">
+           
+         
+            </datalist>
+          </div>
+        </div>
+        <p class="form-world__label-food">Wyżywienie ilość</p>
+        <div class="form-world__grid">
+          <label class="form-world__grid__label-breakfast" for="breakfast">Ilość śniadań</label>
+          <label class="form-world__grid__label-dinner" for="dinner">Ilość obiadów</label>
+          <label class="form-world__grid__label-super" for="super">Ilość kolacji</label><br />
+          <input class="form-world__grid__input-breakfast form-world__grid__input-breakfast--js" placeholder="0" type="number"
+            name="breakfast" id="brekfast" value="0" min="0" />
+          <input class="form-world__grid__input-dinner form-world__grid__input-dinner--js" placeholder="0" type="number"
+            name="dinner" id="dinner" value="0" min="0" />
+          <input class="form-world__grid__input-super form-world__grid__input-super--js" placeholder="0" type="number"
+            name="super" id="super" value="0" min="0" />
+        </div>
+        <div class="form-world__calculate">
+          <button type="button" class="form-world__calculate__button form-world__calculate__button--js">Oblicz</button>
+        </div>
+      </form>
     </main>
      </body>
 </html>

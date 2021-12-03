@@ -14,3 +14,12 @@ dateIn.innerHTML = "Pobyt od: " + $dateIn;
 dateOut.innerHTML = "Pobyt do: " + $dateOut;
 duration.innerHTML = "Długość pobytu: " + $duration;
 diet.innerHTML = "Wyskokść diety: " + $diet + " PLN";
+
+
+
+
+const fetchApi =   fetch('http://api.nbp.pl/api/exchangerates/tables/a/?format=json')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+})
