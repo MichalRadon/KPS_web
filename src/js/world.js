@@ -83,15 +83,13 @@ let dinner;
 let supper;
 
 function calculatePl() {
-  let isCorrect ;
+  let isCorrect;
   dateIn = document.querySelector(".form-world__date-in--js").value;
   timeIn = document.querySelector(".form-world__time-in--js").value;
   dateOut = document.querySelector(".form-world__date-out--js").value;
   timeOut = document.querySelector(".form-world__time-out--js").value;
-  selectedCountry = 
-    document.querySelector("#diet-choice").value;
+  selectedCountry = document.querySelector("#diet-choice").value;
 
-  
   breakfast = parseInt(
     document.querySelector(".form-world__grid__input-breakfast--js").value
   );
@@ -102,31 +100,28 @@ function calculatePl() {
     document.querySelector(".form-world__grid__input-super--js").value
   );
 
-  if(!selectedCountry){
-    window.alert(
-      "Wybierz kraj podróży"
-    );
+  if (!selectedCountry) {
+    window.alert("Wybierz kraj podróży");
   }
-  if(selectedCountry){
-      for (const element of countryArray) {
-        if(element.name == selectedCountry){
-          console.log(element.dietValue);
-          console.log(element.currencyTag);
-          isCorrect = true;
-        }
+  if (selectedCountry) {
+    for (const element of countryArray) {
+      if (element.name == selectedCountry) {
+        dietValue = parseInt(element.dietValue);
+        currencyTag = element.currencyTag;
+        console.log(element.dietValue);
+        console.log(element.currencyTag);
+        isCorrect = true;
+
+        validation();
       }
-      if(!isCorrect){
-        window.alert(
-          "Nie poprawna nazwa kraju"
-        );
-      }
+    }
+    if (!isCorrect) {
+      window.alert("Nie poprawna nazwa kraju");
+    }
   }
-  validation();
- 
 }
 
 function validation() {
-  
   if (dietValue < 0) dietValue = 0;
   if (breakfast < 0) breakfast = 0;
   if (dinner < 0) dinner = 0;
@@ -148,5 +143,65 @@ function dateDiffrence(start, stop) {
 }
 
 function dietCalculation() {
- 
+  let milisecond = dateDiffrence(date1, date2);
+  let days = milisecond / (1000 * 60 * 60 * 24);
+  let hours = milisecond / (1000 * 60 * 60);
+  let minutes = milisecond / (1000 * 60);
+
+  daysOnTrip = Math.floor(days);
+  hoursOnTrip = Math.floor((minutes - daysOnTrip * 24 * 60) / 60);
+  minutesOnTrip = minutes - daysOnTrip * 24 * 60 - hoursOnTrip * 60;
+
+  if (hoursOnTrip > 12 && minutesOnTrip >= 0) {
+    diet = dietValue * daysOnTrip + dietValue;
+  }
+  if (hoursOnTrip == 12 && minutesOnTrip >= 1) {
+    diet = dietValue * daysOnTrip + dietValue;
+  }
+  if (hoursOnTrip == 12 && minutesOnTrip == 0) {
+    diet = dietValue * daysOnTrip + dietValue / 2;
+  }
+  if (hoursOnTrip >= 9 && hoursOnTrip < 12) {
+    diet = dietValue * daysOnTrip + dietValue / 2;
+  }
+  if (hoursOnTrip == 8 && minutesOnTrip > 0) {
+    diet = dietValue * daysOnTrip + dietValue / 2;
+  }
+  if (hoursOnTrip == 8 && minutesOnTrip == 0) {
+    diet = dietValue * daysOnTrip + dietValue / 3;
+  }
+  if (hoursOnTrip < 8 && hoursOnTrip > 0 && minutesOnTrip >= 0) {
+    diet = dietValue * daysOnTrip + dietValue / 3;
+  }
+  if (hoursOnTrip < 8 && hoursOnTrip >= 0 && minutesOnTrip >= 1) {
+    diet = dietValue * daysOnTrip + dietValue / 3;
+  }
+  if (hoursOnTrip == 0 && minutesOnTrip == 0) {
+    diet = dietValue * daysOnTrip;
+  }
+
+  diet -= breakfast * (dietValue * 0.25);
+  diet -= dinner * (dietValue * 0.5);
+  diet -= supper * (dietValue * 0.25);
+
+  console.log(
+    "dni: " + daysOnTrip + " hours: " + hoursOnTrip + " min: " + minutesOnTrip
+  );
+  console.log("stawka: " + dietValue);
+  console.log(
+    "sniadanie: " + breakfast + " obiad: " + dinner + " kolacje : " + supper
+  );
+  console.log("wartość diety: " + diet);
+
+  localStorage.setItem("dateIn", dateIn + ", " + timeIn);
+  localStorage.setItem("dateOut", dateOut + ", " + timeOut);
+  localStorage.setItem(
+    "time",
+    daysOnTrip + " dni " + hoursOnTrip + " godz " + minutesOnTrip + " minut"
+  );
+  localStorage.setItem("diet", diet);
+  localStorage.setItem("currencyTag", currencyTag);
+  localStorage.setItem("tag", "world");
+
+  window.location.href = "/summary.html";
 }

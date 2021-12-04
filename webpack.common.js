@@ -9,6 +9,7 @@ module.exports = {
     world: "./src/js/world.js",
     another: "./src/js/another.js",
     summary: "./src/js/summary.js"
+    
   },
   output: {
     filename: "[name].[hash:8].js",
