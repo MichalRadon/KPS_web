@@ -126,8 +126,8 @@ function validation() {
   if (breakfast < 0) breakfast = 0;
   if (dinner < 0) dinner = 0;
   if (supper < 0) supper = 0;
-  date1 = new Date(dateIn + "," + timeIn);
-  date2 = new Date(dateOut + "," + timeOut);
+  date1 = new Date(dateIn + "T" + timeIn);
+  date2 = new Date(dateOut + "T" + timeOut);
 
   if (!(date2 > date1)) {
     window.alert(
@@ -203,5 +203,5 @@ function dietCalculation() {
   localStorage.setItem("currencyTag", currencyTag);
   localStorage.setItem("tag", "world");
 
-  window.location.href = "/summary.html";
+  window.location.href = "./summary.html";
 }

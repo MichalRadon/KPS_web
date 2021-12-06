@@ -121,5 +121,5 @@ function dietCalculation() {
   localStorage.setItem("diet", diet);
   localStorage.setItem("tag", "pl");
 
-  window.location.href = "/summary.html";
+  window.location.href = "./summary.html";
 }
