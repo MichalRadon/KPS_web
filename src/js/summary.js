@@ -14,7 +14,7 @@ const $duration = localStorage.getItem("time");
 const $diet = localStorage.getItem("diet");
 tag = localStorage.getItem("currencyTag");
 
-const fetchApi = fetch("http://api.nbp.pl/api/exchangerates/tables/a/")
+const fetchApi = fetch("https://api.nbp.pl/api/exchangerates/tables/a/")
   .then((response) => response.json())
   .then((data) => {
     //console.log(data);
